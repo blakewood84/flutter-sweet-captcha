@@ -1,9 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools;
 
-import 'package:rive/rive.dart';
 import 'package:sweet_captcha/screens/captcha_screen.dart';
 
 void main() {
