@@ -3,11 +3,26 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools;
 
+import 'package:rive/rive.dart';
+
 void main() {
   runApp(const App());
 }
 
-enum CaptchaOptions { one, two, three, four }
+enum CaptchaOptions {
+  one(Colors.redAccent, 1),
+  two(Colors.amberAccent, 2),
+  three(Colors.purpleAccent, 3),
+  four(Colors.greenAccent, 4);
+
+  const CaptchaOptions(
+    this.color,
+    this.numberValue,
+  );
+
+  final Color color;
+  final int numberValue;
+}
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -155,7 +170,10 @@ class _CaptchaScreenState extends State<CaptchaScreen> {
                       ValueListenableBuilder(
                         valueListenable: _authenticatedNotifier,
                         builder: (_, bool authenticated, __) {
-                          if (authenticated) return SizedBox.shrink();
+                          // Authenticated Target
+                          if (authenticated) {
+                            return const AuthenticatedTarget();
+                          }
 
                           return DragTarget<CaptchaOptions>(
                             onWillAccept: (data) {
@@ -233,7 +251,12 @@ class _AuthenticatedTargetState extends State<AuthenticatedTarget> {
             );
           }
 
-          return SizedBox.shrink();
+          return RiveAnimation.asset(
+            'assets/rive/check_mark.riv1',
+            onInit: (artBoard) {
+              devtools.log('Init!');
+            },
+          );
         },
       ),
     );
