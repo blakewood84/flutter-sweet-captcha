@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:sweet_captcha/features/captcha/ui/widgets/captcha.dart';
-import 'package:sweet_captcha/main.dart';
 
 class CaptchaScreen extends StatefulWidget {
   const CaptchaScreen({super.key});
@@ -12,11 +11,6 @@ class CaptchaScreen extends StatefulWidget {
 }
 
 class _CaptchaScreenState extends State<CaptchaScreen> {
-  final _authenticatedNotifier = ValueNotifier(false);
-  final targetCaptcha = CaptchaOptions.values.elementAt(
-    Random().nextInt(4),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

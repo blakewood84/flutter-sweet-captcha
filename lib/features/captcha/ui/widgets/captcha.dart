@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, BlocProvider;
 import 'package:sweet_captcha/features/captcha/ui/cubit/captcha_cubit.dart';
+import 'package:sweet_captcha/main.dart';
+
+import 'dart:developer' as devtools;
 
 class Captcha extends StatelessWidget {
   const Captcha({super.key});
@@ -12,6 +15,7 @@ class Captcha extends StatelessWidget {
       create: (context) => CaptchaCubit(),
       child: BlocBuilder<CaptchaCubit, CaptchaState>(
         builder: (context, state) {
+          devtools.log('${state.targetOption}');
           return Container(
             width: size.width * .75,
             height: 110,
@@ -48,40 +52,37 @@ class Captcha extends StatelessWidget {
                       const SizedBox(height: 5.0),
                       Row(
                         children: [
-                          Container(
-                            width: 28,
-                            height: 28,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.amberAccent,
-                            ),
-                          ),
-                          const SizedBox(width: 3.0),
-                          Container(
-                            width: 28,
-                            height: 28,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.blueAccent,
-                            ),
-                          ),
-                          const SizedBox(width: 3.0),
-                          Container(
-                            width: 28,
-                            height: 28,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.purpleAccent,
-                            ),
-                          ),
-                          const SizedBox(width: 3.0),
-                          Container(
-                            width: 28,
-                            height: 28,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4.0),
-                              color: Colors.greenAccent,
-                            ),
+                          ...Options.values.map(
+                            (option) {
+                              return Container(
+                                margin: const EdgeInsets.only(right: 3.0),
+                                child: Draggable<Options>(
+                                  data: option,
+                                  feedback: Material(
+                                    color: Colors.transparent,
+                                    child: Container(
+                                      width: 28,
+                                      height: 28,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4.0),
+                                        color: option.color,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Container(
+                                    width: 28,
+                                    height: 28,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4.0),
+                                      color: option.color,
+                                    ),
+                                    child: Center(
+                                      child: Text(option.numberValue.toString()),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -96,7 +97,7 @@ class Captcha extends StatelessWidget {
                           ),
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
-                        child: Text(
+                        child: const Text(
                           'Reset',
                           style: TextStyle(
                             fontSize: 9,
@@ -110,10 +111,23 @@ class Captcha extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Center(
-                    child: Container(
-                      width: 55,
-                      height: 55,
-                      color: Colors.red,
+                    child: DragTarget<Options>(
+                      onWillAccept: (data) {
+                        if (data == state.targetOption) {
+                          return true;
+                        }
+                        return false;
+                      },
+                      onAccept: (data) {
+                        devtools.log('Accepted!');
+                      },
+                      builder: (context, candidateData, rejectedData) {
+                        return Container(
+                          width: 55,
+                          height: 55,
+                          color: Colors.red,
+                        );
+                      },
                     ),
                   ),
                 )

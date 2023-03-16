@@ -11,3 +11,5 @@ final List<List<String>> randomObjects = [
   ['microphone', 'airplane', 'key', 'door'],
   ['house', 'car', 'tree', 'mouse'],
 ];
+
+class CaptchaRepository {}
