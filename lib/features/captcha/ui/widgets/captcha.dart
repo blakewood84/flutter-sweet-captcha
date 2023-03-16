@@ -66,6 +66,19 @@ class Captcha extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(4.0),
                                         color: option.color,
                                       ),
+                                      child: Center(
+                                        child: Text(
+                                          option.numberValue.toString(),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  childWhenDragging: Container(
+                                    width: 28,
+                                    height: 28,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4.0),
+                                      color: Colors.grey.withOpacity(.8),
                                     ),
                                   ),
                                   child: Container(
@@ -76,7 +89,9 @@ class Captcha extends StatelessWidget {
                                       color: option.color,
                                     ),
                                     child: Center(
-                                      child: Text(option.numberValue.toString()),
+                                      child: Text(
+                                        option.numberValue.toString(),
+                                      ),
                                     ),
                                   ),
                                 ),

@@ -26,10 +26,14 @@ class CaptchaTarget extends StatelessWidget {
                   context.read<CaptchaCubit>().verifyCaptcha(option);
                 },
                 builder: (context, candidateData, rejectedData) {
-                  return Container(
+                  return const SizedBox(
                     width: 55,
                     height: 55,
-                    color: Colors.red,
+                    child: Icon(
+                      Icons.work_outline,
+                      size: 50,
+                      color: Colors.black,
+                    ),
                   );
                 },
               ),

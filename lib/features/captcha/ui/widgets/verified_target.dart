@@ -32,7 +32,9 @@ class _VerifiedTargetState extends State<VerifiedTarget> {
         builder: (_, bool isLoading, __) {
           if (isLoading) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Colors.green,
+              ),
             );
           }
 
