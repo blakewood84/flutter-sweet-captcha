@@ -1,0 +1,18 @@
+const captchaObjects = [
+  'piano',
+  'guitar',
+  'cup',
+  'chair',
+  'elephant',
+  'car',
+  'lion',
+  'pillow',
+  'microphone',
+  'airplane',
+  'key',
+  'door',
+  'house',
+  'car',
+  'tree',
+  'mouse',
+];

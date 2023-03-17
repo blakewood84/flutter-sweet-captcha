@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:sweet_captcha/features/captcha/data/models/options.dart';
 import 'package:sweet_captcha/features/captcha/ui/cubit/captcha_cubit.dart';
 import 'package:sweet_captcha/features/captcha/ui/widgets/verified_target.dart';
 
@@ -15,7 +14,7 @@ class CaptchaTarget extends StatelessWidget {
         switch (state.isVerified) {
           case false:
             return Center(
-              child: DragTarget<Options>(
+              child: DragTarget<String>(
                 onWillAccept: (data) {
                   if (data == state.targetOption) {
                     return true;

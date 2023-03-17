@@ -1,15 +1,16 @@
-// Return a Random set of enums
+import 'dart:math' as math show Random;
+import 'package:sweet_captcha/constants/constants.dart' show captchaObjects;
 
-// Want to return a random list of objects
-// Want to get a Target object
+class CaptchaRepository {
+  Set<String> getCaptchaOptions() {
+    final options = <String>{};
 
-// 4 Lists of random object
+    while (options.length < 4) {
+      final randomNumber = math.Random().nextInt(captchaObjects.length);
+      final randomOption = captchaObjects.elementAt(randomNumber);
+      options.add(randomOption);
+    }
 
-final List<List<String>> randomObjects = [
-  ['piano', 'guitar', 'cup', 'chair'],
-  ['elephant', 'car', 'lion', 'pillow'],
-  ['microphone', 'airplane', 'key', 'door'],
-  ['house', 'car', 'tree', 'mouse'],
-];
-
-class CaptchaRepository {}
+    return options;
+  }
+}

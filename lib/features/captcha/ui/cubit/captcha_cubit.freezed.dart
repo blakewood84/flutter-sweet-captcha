@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CaptchaState {
-  Options? get targetOption => throw _privateConstructorUsedError;
+  String? get targetOption => throw _privateConstructorUsedError;
+  Set<String>? get captchaOptions => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,8 @@ abstract class $CaptchaStateCopyWith<$Res> {
           CaptchaState value, $Res Function(CaptchaState) then) =
       _$CaptchaStateCopyWithImpl<$Res, CaptchaState>;
   @useResult
-  $Res call({Options? targetOption, bool isVerified});
+  $Res call(
+      {String? targetOption, Set<String>? captchaOptions, bool isVerified});
 }
 
 /// @nodoc
@@ -47,13 +49,18 @@ class _$CaptchaStateCopyWithImpl<$Res, $Val extends CaptchaState>
   @override
   $Res call({
     Object? targetOption = freezed,
+    Object? captchaOptions = freezed,
     Object? isVerified = null,
   }) {
     return _then(_value.copyWith(
       targetOption: freezed == targetOption
           ? _value.targetOption
           : targetOption // ignore: cast_nullable_to_non_nullable
-              as Options?,
+              as String?,
+      captchaOptions: freezed == captchaOptions
+          ? _value.captchaOptions
+          : captchaOptions // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
       isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
@@ -70,7 +77,8 @@ abstract class _$$_CaptchaStateCopyWith<$Res>
       __$$_CaptchaStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Options? targetOption, bool isVerified});
+  $Res call(
+      {String? targetOption, Set<String>? captchaOptions, bool isVerified});
 }
 
 /// @nodoc
@@ -85,13 +93,18 @@ class __$$_CaptchaStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? targetOption = freezed,
+    Object? captchaOptions = freezed,
     Object? isVerified = null,
   }) {
     return _then(_$_CaptchaState(
       targetOption: freezed == targetOption
           ? _value.targetOption
           : targetOption // ignore: cast_nullable_to_non_nullable
-              as Options?,
+              as String?,
+      captchaOptions: freezed == captchaOptions
+          ? _value._captchaOptions
+          : captchaOptions // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
       isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
@@ -103,16 +116,30 @@ class __$$_CaptchaStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CaptchaState implements _CaptchaState {
-  const _$_CaptchaState({this.targetOption, required this.isVerified});
+  const _$_CaptchaState(
+      {this.targetOption,
+      final Set<String>? captchaOptions,
+      required this.isVerified})
+      : _captchaOptions = captchaOptions;
 
   @override
-  final Options? targetOption;
+  final String? targetOption;
+  final Set<String>? _captchaOptions;
+  @override
+  Set<String>? get captchaOptions {
+    final value = _captchaOptions;
+    if (value == null) return null;
+    if (_captchaOptions is EqualUnmodifiableSetView) return _captchaOptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(value);
+  }
+
   @override
   final bool isVerified;
 
   @override
   String toString() {
-    return 'CaptchaState(targetOption: $targetOption, isVerified: $isVerified)';
+    return 'CaptchaState(targetOption: $targetOption, captchaOptions: $captchaOptions, isVerified: $isVerified)';
   }
 
   @override
@@ -122,12 +149,15 @@ class _$_CaptchaState implements _CaptchaState {
             other is _$_CaptchaState &&
             (identical(other.targetOption, targetOption) ||
                 other.targetOption == targetOption) &&
+            const DeepCollectionEquality()
+                .equals(other._captchaOptions, _captchaOptions) &&
             (identical(other.isVerified, isVerified) ||
                 other.isVerified == isVerified));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, targetOption, isVerified);
+  int get hashCode => Object.hash(runtimeType, targetOption,
+      const DeepCollectionEquality().hash(_captchaOptions), isVerified);
 
   @JsonKey(ignore: true)
   @override
@@ -138,11 +168,14 @@ class _$_CaptchaState implements _CaptchaState {
 
 abstract class _CaptchaState implements CaptchaState {
   const factory _CaptchaState(
-      {final Options? targetOption,
+      {final String? targetOption,
+      final Set<String>? captchaOptions,
       required final bool isVerified}) = _$_CaptchaState;
 
   @override
-  Options? get targetOption;
+  String? get targetOption;
+  @override
+  Set<String>? get captchaOptions;
   @override
   bool get isVerified;
   @override
