@@ -25,4 +25,4 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/rive/check_mark.riv
+    - assets/rive/check_mark_icon2.riv

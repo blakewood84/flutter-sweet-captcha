@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, BlocProvider, ReadContext, RepositoryProvider;
 import 'package:sweet_captcha/constants/constants.dart';
 
-import 'package:sweet_captcha/features/captcha/data/models/options.dart';
 import 'package:sweet_captcha/features/captcha/data/repositories/captcha_repository.dart';
 import 'package:sweet_captcha/features/captcha/ui/cubit/captcha_cubit.dart';
 import 'package:sweet_captcha/features/captcha/ui/widgets/captcha_target.dart';

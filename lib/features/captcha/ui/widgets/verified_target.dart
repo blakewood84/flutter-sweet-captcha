@@ -38,13 +38,10 @@ class _VerifiedTargetState extends State<VerifiedTarget> {
             );
           }
 
-          return const SizedBox(
-            height: 60,
-            width: 60,
-            child: RiveAnimation.asset(
-              'assets/rive/check_mark.riv',
-              animations: ['show'],
-            ),
+          return const RiveAnimation.asset(
+            'assets/rive/check_mark_icon2.riv',
+            fit: BoxFit.cover,
+            animations: ['show'],
           );
         },
       ),
