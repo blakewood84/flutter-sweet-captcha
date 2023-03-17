@@ -5,6 +5,8 @@ import 'package:sweet_captcha/constants/constants.dart';
 import 'package:sweet_captcha/extensions/get_random_element.dart';
 import 'package:sweet_captcha/features/captcha/data/repositories/captcha_repository.dart';
 
+import 'dart:developer' as devtools;
+
 part 'captcha_state.dart';
 part 'captcha_cubit.freezed.dart';
 
@@ -23,6 +25,7 @@ class CaptchaCubit extends Cubit<CaptchaState> {
 
     emit(
       state.copyWith(
+        attempts: 0,
         targetOption: targetOption,
         captchaOptions: captchaOptions,
         isVerified: false,
@@ -32,11 +35,28 @@ class CaptchaCubit extends Cubit<CaptchaState> {
 
   void verifyCaptcha(CaptchaObject option) {
     final isVerified = option == state.targetOption;
-    emit(
-      state.copyWith(
-        isVerified: isVerified,
-      ),
-    );
+    final attempts = (state.attempts ?? 0) + 1;
+
+    if (attempts > 3) {
+      devtools.log('No More Attempts! ', error: 'No More Attempts!');
+      return;
+    }
+
+    if (!isVerified) {
+      emit(
+        state.copyWith(
+          attempts: attempts,
+          isVerified: isVerified,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          attempts: 0,
+          isVerified: isVerified,
+        ),
+      );
+    }
   }
 
   void resetCaptcha() {
