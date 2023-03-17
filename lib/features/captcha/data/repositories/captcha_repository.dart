@@ -1,13 +1,16 @@
-import 'dart:math' as math show Random;
-import 'package:sweet_captcha/constants/constants.dart' show captchaObjects;
+import 'dart:math';
+
+import 'package:sweet_captcha/extensions/get_random_option.dart';
+import 'package:sweet_captcha/constants/constants.dart' show CaptchaObject;
 
 class CaptchaRepository {
-  Set<String> getCaptchaOptions() {
-    final options = <String>{};
+  Set<CaptchaObject> getCaptchaOptions() {
+    final options = <CaptchaObject>{};
 
-    while (options.length < 4) {
-      final randomNumber = math.Random().nextInt(captchaObjects.length);
-      final randomOption = captchaObjects.elementAt(randomNumber);
+    final randomMax = Random().nextInt(3) + 4;
+
+    while (options.length < randomMax) {
+      final randomOption = CaptchaObject.values.getRandomOption;
       options.add(randomOption);
     }
 

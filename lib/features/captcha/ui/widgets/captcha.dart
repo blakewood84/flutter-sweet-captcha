@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, BlocProvider, ReadContext, RepositoryProvider;
+import 'package:sweet_captcha/constants/constants.dart';
 
 import 'package:sweet_captcha/features/captcha/data/models/options.dart';
 import 'package:sweet_captcha/features/captcha/data/repositories/captcha_repository.dart';
@@ -21,7 +22,7 @@ class Captcha extends StatelessWidget {
         ),
         child: BlocBuilder<CaptchaCubit, CaptchaState>(
           builder: (context, state) {
-            final captchaOptions = state.captchaOptions ?? <String>{};
+            final captchaOptions = state.captchaOptions ?? <CaptchaObject>{};
 
             return Container(
               width: size.width * .75,
@@ -50,7 +51,7 @@ class Captcha extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Drag and put the ${state.targetOption} in the suitcase.',
+                          'Drag and put the ${state.targetOption?.text ?? ''} in the folder.',
                           style: const TextStyle(
                             fontSize: 9,
                             color: Colors.black,
@@ -63,7 +64,7 @@ class Captcha extends StatelessWidget {
                               (option) {
                                 return Container(
                                   margin: const EdgeInsets.only(right: 3.0),
-                                  child: Draggable<String>(
+                                  child: Draggable<CaptchaObject>(
                                     data: option,
                                     feedback: Material(
                                       color: Colors.transparent,
@@ -72,16 +73,10 @@ class Captcha extends StatelessWidget {
                                         height: 28,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(4.0),
-                                          color: Colors.redAccent,
+                                          color: Colors.blueGrey.withOpacity(0.7),
                                         ),
                                         child: Center(
-                                          child: Text(
-                                            option,
-                                            style: const TextStyle(
-                                              fontSize: 5,
-                                              color: Colors.black,
-                                            ),
-                                          ),
+                                          child: option.icon,
                                         ),
                                       ),
                                     ),
@@ -98,16 +93,10 @@ class Captcha extends StatelessWidget {
                                       height: 28,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(4.0),
-                                        color: Colors.redAccent,
+                                        color: Colors.blueGrey.withOpacity(.7),
                                       ),
                                       child: Center(
-                                        child: Text(
-                                          option,
-                                          style: const TextStyle(
-                                            fontSize: 5,
-                                            color: Colors.black,
-                                          ),
-                                        ),
+                                        child: option.icon,
                                       ),
                                     ),
                                   ),

@@ -3,8 +3,8 @@ part of 'captcha_cubit.dart';
 @freezed
 class CaptchaState with _$CaptchaState {
   const factory CaptchaState({
-    String? targetOption,
-    Set<String>? captchaOptions,
+    CaptchaObject? targetOption,
+    Set<CaptchaObject>? captchaOptions,
     required bool isVerified,
   }) = _CaptchaState;
 
