@@ -1,6 +1,6 @@
 # sweet_captcha
 
-A Captcha project inspired by the old Sweet Captcha solver.
+A captcha project inspired by the old Sweet Captcha solver.
 
 ### Preview: 
 
